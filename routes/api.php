@@ -13,4 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/vk-import', [App\Http\Controllers\VkImportController::class, 'store']);
+Route::get('/users', [App\Http\Controllers\UserController::class, 'index']);
+Route::get('/user/{id}', [App\Http\Controllers\UserController::class, 'show']);
