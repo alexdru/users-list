@@ -62,7 +62,7 @@ class VkImport extends Command
             $photo = $newUser
                 ->addMediaFromUrl($url)
                 ->toMediaCollection();
-            $newUser->photo = env('APP_URL') . '/storage/app/media/' . $photo['id'] . '/' . $photo['file_name'];
+            $newUser->photo = $photo->getFullUrl();
 
             $result = $newUser->save();
         }
