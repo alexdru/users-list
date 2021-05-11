@@ -9,14 +9,40 @@ services:
       context: ./
       dockerfile: Dockerfile
     container_name: app
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
     volumes:
       - ./:/var/www/users-list
       - /var/www/users-list/vendor
     restart: unless-stopped
     networks:
       - app-network
+    depends_on:
+      - database
+    links:
+      - database
 
-  db:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "8000:8000"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./:/var/www/users-list
+      - ./logs/nginx:/var/log/nginx
+    restart: unless-stopped
+    networks:
+      - app-network
+    depends_on:
+      - app
+    links:
+      - app
+      - database
+
+  database:
     image: mysql:5.7
     container_name: database
     restart: unless-stopped
@@ -26,22 +52,11 @@ services:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_USER: ${DB_USERNAME}
+      #MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
     volumes:
       - ./:/docker-entrypoint-initdb.d
-    networks:
-      - app-network
-
-  nginx:
-    image: nginx:latest
-    container_name: nginx
-    ports:
-      - "8000:80"
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
-      - ./:/var/www/users-list
-      - ./logs/nginx:/var/log/nginx
-    restart: unless-stopped
     networks:
       - app-network
 
