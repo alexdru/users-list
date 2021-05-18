@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class UserResource extends JsonResource
 {
     /**
-     * Transform the resource into an array.
+     * Get user's fields
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
@@ -18,7 +18,7 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'photo' => $this->photo,
+            'photo' => $this->getFirstMediaUrl(),
         ];
     }
 }

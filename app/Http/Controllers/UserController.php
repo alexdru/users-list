@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display all user's fields.
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
@@ -40,7 +40,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display user's field by ID.
      *
      * @param  int  $id
      * @return UserResource

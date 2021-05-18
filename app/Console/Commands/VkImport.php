@@ -2,11 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\User;
 use Illuminate\Console\Command;
-use VK\Client\VKApiClient;
-use VK\Exceptions\VKApiException;
-use VK\Exceptions\VKClientException;
+use App\Services\Vk\Import;
 
 class VkImport extends Command
 {
@@ -35,38 +32,13 @@ class VkImport extends Command
     }
 
     /**
-     * Execute the console command.
+     * Execute the vk import console command.
      *
-     * @return bool
-     * @throws VKApiException
-     * @throws VKClientException
+     * @return void
      */
-    public function handle(): bool
+    public function handle(): void
     {
-        $accessToken = env('VK_ACCESS_TOKEN');
-        $userId = env('VK_USER_ID');
-
-        $vk = new VKApiClient();
-        $response = $vk->friends()->get($accessToken, [
-            'user_id' => $userId,
-            'order' => 'random',
-            'fields' => ['photo_400_orig']
-        ]);
-
-        foreach ($response['items'] as $item) {
-            $newUser = User::firstOrNew([
-                'name' => $item['first_name'] . ' ' . $item['last_name'],
-                'email' => $item['email'] ?? NULL,
-            ]);
-            $url = $item['photo_400_orig'];
-            $photo = $newUser
-                ->addMediaFromUrl($url)
-                ->toMediaCollection();
-            $newUser->photo = $photo->getFullUrl();
-
-            $result = $newUser->save();
-        }
-
-        return $result;
+        $vkImport = new Import;
+        $vkImport->getFriendsList();
     }
 }
