@@ -16,16 +16,9 @@ docker exec -it app cp .env.example .env
 docker exec -it app php artisan key:generate
 ```
 
-**Create database `users_list`:**
-```bash
-docker exec -it database mysql -u root -h 127.0.0.1 -P 3306 -p
-CREATE DATABASE `users_list` CHARACTER SET utf8 COLLATE utf8_general_ci;
-exit
-```
-
 **Make database migration:**
 ```bash
-docker exec -it app php artisan config:cache
+docker exec -it app php artisan config:clear
 docker exec -it app php artisan migrate
 ```
 
@@ -39,7 +32,7 @@ Copy vk token from url and paste into `VK_ACCESS_TOKEN`
 
 **Run vk import console command:**
 ```bash
-docker exec -it app php artisan config:cache
+docker exec -it app php artisan config:clear
 docker exec -it app php artisan vk:import
 ```
 
