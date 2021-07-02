@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Services\Vk;
+namespace App\Services;
 
 use VK\Client\VKApiClient;
 use VK\Exceptions\VKApiException;
 use VK\Exceptions\VKClientException;
 use App\Models\User;
 
-class Import
+class VkImportService
 {
-    /*
+    /**
      * Get user's friends list
      *
-     * @return bool
      * @throws VKApiException
      * @throws VKClientException
+     *
+     * @return void
      */
     public function getFriendsList(): void
     {

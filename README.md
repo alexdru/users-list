@@ -18,8 +18,7 @@ docker exec -it app php artisan key:generate
 
 **Make database migration:**
 ```bash
-docker exec -it app php artisan config:clear
-docker exec -it app php artisan migrate
+docker exec -it app php artisan migrate:fresh
 ```
 
 **Get vk token and insert into `.env` file:**
@@ -30,16 +29,20 @@ Copy and paste vk id into `VK_USER_ID`
 Get your vk token via [this link](https://oauth.vk.com/authorize?client_id=7837252&scope=2&redirect_uri=https://oauth.vk.com/blank.html&display=page&response_type=token&revoke=1).
 Copy vk token from url and paste into `VK_ACCESS_TOKEN`
 
-**Run vk import console command:**
+**Clear config cache:**
 ```bash
 docker exec -it app php artisan config:clear
+```
+
+**Run vk import console command:**
+```bash
 docker exec -it app php artisan vk:import
 ```
 
 **API Routes:**
-```bash
-http://127.0.0.1:8000/api/users - list of all users
-http://127.0.0.1:8000/api/user/34 - obtaining detailed information about a user by ID
+```
+/api/users - list of all users
+/api/user/{id} - obtaining detailed information about a user by ID
 ```
 
 ## License

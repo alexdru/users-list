@@ -3,9 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Services\Vk\Import;
+use App\Services\VkImportService;
 
-class VkImport extends Command
+class VkImportCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -38,7 +38,7 @@ class VkImport extends Command
      */
     public function handle(): void
     {
-        $vkImport = new Import;
+        $vkImport = new VKImportService;
         $vkImport->getFriendsList();
     }
 }
