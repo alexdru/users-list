@@ -9,6 +9,15 @@ use App\Models\User;
 
 class VkImportService
 {
+    protected VKApiClient $vkApiClient;
+
+    /**
+     * VkImportService constructor.
+     */
+    public function __construct()
+    {
+        $this->vkApiClient = app(VKApiClient::class);
+    }
     /**
      * Get user's friends list
      *
@@ -22,8 +31,7 @@ class VkImportService
         $accessToken = config('vk.token');
         $userId = config('vk.user_id');
 
-        $vk = new VKApiClient();
-        $response = $vk->friends()->get($accessToken, [
+        $response = $this->vkApiClient->friends()->get($accessToken, [
             'user_id' => $userId,
             'order' => 'random',
             'fields' => ['photo_400_orig']

@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Services\VkImportService;
+use VK\Exceptions\VKApiException;
+use VK\Exceptions\VKClientException;
 
 class VkImportCommand extends Command
 {
@@ -13,6 +15,8 @@ class VkImportCommand extends Command
      * @var string
      */
     protected $signature = 'vk:import';
+
+    protected VkImportService $vkImportService;
 
     /**
      * The console command description.
@@ -29,16 +33,19 @@ class VkImportCommand extends Command
     public function __construct()
     {
         parent::__construct();
+        $this->vkImportService = app(VkImportService::class);
     }
 
     /**
      * Execute the vk import console command.
      *
+     * @throws VKApiException
+     * @throws VKClientException
+     *
      * @return void
      */
     public function handle(): void
     {
-        $vkImport = new VKImportService;
-        $vkImport->getFriendsList();
+        $this->vkImportService->getFriendsList();
     }
 }
