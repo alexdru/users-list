@@ -9,7 +9,9 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 class UserController extends Controller
 {
     /**
-     * Display all user's fields.
+     * Display all users.
+     *
+     * @responseFile responses/user/users-list.json
      *
      * @return AnonymousResourceCollection
      */
@@ -19,9 +21,11 @@ class UserController extends Controller
     }
 
     /**
-     * Display user's field by ID.
+     * Display user's fields by ID.
      *
      * @param int $id
+     * @responseFile responses/user/user-data.json
+     *
      * @return UserResource
      */
     public function show(int $id): UserResource

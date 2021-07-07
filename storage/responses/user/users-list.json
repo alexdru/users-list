@@ -1,0 +1,16 @@
+{
+    "data": [
+        {
+            "id": 170,
+            "name": "Мария Балезина",
+            "email": null,
+            "photo": "http://localhost/storage/app/media/_cDg0KyAIQh8hckXgumxFlxBd-gfN18io-G81Ec-iMB3sXsHx70VUv0snSyN9ILDG_OJGjJk2h09RmTCmK13Po1N.jpg"
+        },
+        {
+            "id": 171,
+            "name": "Настя Ширинкина",
+            "email": null,
+            "photo": "http://localhost/storage/app/media/iE21JavFmq3nMfegtRYRmW9W_zByznAcVBDNxyTBqsuXBq9HC1PE3HBK4ZMbjK58nRkUU3Ts.jpg"
+        }
+    ]
+}
