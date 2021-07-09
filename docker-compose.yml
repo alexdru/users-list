@@ -49,7 +49,7 @@ services:
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
-      - ./:/docker-entrypoint-initdb.d
+      - ./docker/sql:/docker-entrypoint-initdb.d
     networks:
       - app-network
 
