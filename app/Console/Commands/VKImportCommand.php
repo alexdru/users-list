@@ -3,11 +3,11 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Services\VkImportService;
+use App\Services\VKImportService;
 use VK\Exceptions\VKApiException;
 use VK\Exceptions\VKClientException;
 
-class VkImportCommand extends Command
+class VKImportCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -16,7 +16,7 @@ class VkImportCommand extends Command
      */
     protected $signature = 'vk:import';
 
-    protected VkImportService $vkImportService;
+    protected VKImportService $vkImportService;
 
     /**
      * The console command description.
@@ -33,7 +33,7 @@ class VkImportCommand extends Command
     public function __construct()
     {
         parent::__construct();
-        $this->vkImportService = app(VkImportService::class);
+        $this->vkImportService = app(VKImportService::class);
     }
 
     /**

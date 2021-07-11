@@ -7,12 +7,12 @@ use VK\Exceptions\VKApiException;
 use VK\Exceptions\VKClientException;
 use App\Models\User;
 
-class VkImportService
+class VKImportService
 {
     protected VKApiClient $vkApiClient;
 
     /**
-     * VkImportService constructor.
+     * VKImportService constructor.
      */
     public function __construct()
     {
