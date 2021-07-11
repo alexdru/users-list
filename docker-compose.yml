@@ -9,15 +9,10 @@ services:
       context: .
       dockerfile: docker/Dockerfile
     container_name: app
-    environment:
-      SERVICE_NAME: app
-      SERVICE_TAGS: dev
     volumes:
       - ./:/var/www/users-list
     tty: true
     restart: unless-stopped
-    networks:
-      - app-network
     depends_on:
       - database
 
@@ -30,8 +25,6 @@ services:
       - ./docker/nginx:/etc/nginx/conf.d
       - ./:/var/www/users-list
     restart: unless-stopped
-    networks:
-      - app-network
     depends_on:
       - app
 
@@ -46,13 +39,5 @@ services:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_USER: ${DB_USERNAME}
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
     volumes:
       - ./docker/sql:/docker-entrypoint-initdb.d
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
