@@ -24,6 +24,7 @@ class UserController extends Controller
      * Display user's fields by ID.
      *
      * @param int $id
+     * @urlParam id int required User id. For example: 1
      * @responseFile responses/user/user-data.json
      *
      * @return UserResource

@@ -39,7 +39,7 @@ class UserControllerTest extends TestCase
             ->inRandomOrder()
             ->first();
 
-        $response = $this->get("/api/user/$userId->id");
+        $response = $this->get("/api/users/$userId->id");
 
         $structure = $this->getFileStructure('/responses/user/user-data.json');
         $response->assertJsonStructure($structure);
