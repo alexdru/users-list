@@ -16,5 +16,5 @@ use App\Http\Controllers\UserController;
 
 Route::prefix('users')->group(function () {
     Route::get('', [UserController::class, 'index']);
-    Route::get('{id}', [UserController::class, 'show']);
+    Route::get('{user}', [UserController::class, 'show']);
 });

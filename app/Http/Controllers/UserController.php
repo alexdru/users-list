@@ -23,14 +23,14 @@ class UserController extends Controller
     /**
      * Display user's fields by ID.
      *
-     * @param int $id
-     * @urlParam id int required User id. For example: 1
+     * @param User $user
+     * @urlParam user integer required User id. For example: 1
      * @responseFile responses/user/user-data.json
      *
      * @return UserResource
      */
-    public function show(int $id): UserResource
+    public function show(User $user): UserResource
     {
-        return new UserResource(User::findOrFail($id));
+        return new UserResource($user);
     }
 }

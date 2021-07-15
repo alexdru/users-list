@@ -42,7 +42,7 @@ docker exec -it app php artisan vk:import
 **API Routes:**
 ```
 /api/users - list of all users
-/api/user/{id} - obtaining detailed information about a user by ID
+/api/users/{id} - obtaining detailed information about a user by ID
 ```
 
 ## License
